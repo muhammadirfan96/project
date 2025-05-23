@@ -313,7 +313,7 @@ class Auth extends BaseConfig
 	 */
 	public $userActivators = [
 		'Myth\Auth\Authentication\Activators\EmailActivator' => [
-			'fromEmail' => "simokit@webpunagaya.com",
+			'fromEmail' => "webpunagayaweb@gmail.com",
 			'fromName' => "simokit",
 		],
 	];
@@ -329,7 +329,7 @@ class Auth extends BaseConfig
 	 */
 	public $userResetters = [
 		'Myth\Auth\Authentication\Resetters\EmailResetter' => [
-			'fromEmail' => "simokit@webpunagaya.com",
+			'fromEmail' => "webpunagayaweb@gmail.com",
 			'fromName' => "simokit",
 		],
 	];

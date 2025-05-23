@@ -10,10 +10,12 @@ services:
       - "443:443"
     volumes:
       - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
+      - /usr/share/nginx/html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./certs:/etc/nginx/certs:ro
       - ./conf.d:/etc/nginx/conf.d
+    labels:
+      - com.github.nginx-proxy.nginx
     networks:
       - proxy
 
@@ -23,6 +25,7 @@ services:
     restart: always
     environment:
       - DEFAULT_EMAIL=muhammadirfan187@outlook.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./certs:/etc/nginx/certs

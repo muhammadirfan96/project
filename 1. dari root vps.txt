@@ -1,0 +1,23 @@
+1. dari root vps
+>> git clone -b main https://github.com/muhammadirfan96/project.git
+>> cp -ri /root/simokit/public/img-5s /root/simokit/public/img-sr /root/simokit/public/img-ttd /root/simokit/public/img-profile /root/project/simokit/public/
+
+2. dari /project/simokit
+>> edit .env
+>> edit .docker-compose.yml
+
+sudo chown -R www-data:www-data ./writable
+sudo chmod -R 775 ./writable
+sudo chown -R www-data:www-data ./public
+sudo chmod -R 755 ./public
+sudo chown -R www-data:www-data ./vendor
+sudo chmod -R 755 ./vendor
+
+3. dari root
+>> docker network create proxy
+
+4. dari /project/nginx-proxy
+>> docker-compose up -d
+
+5. dari /project/simokit
+>> docker-compose up -d

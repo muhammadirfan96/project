@@ -9,7 +9,7 @@ class Email extends BaseConfig
     /**
      * @var string
      */
-    public $fromEmail = 'simokit@webpunagaya.com';
+    public $fromEmail = 'webpunagayaweb@gmail.com';
 
     /**
      * @var string
@@ -47,28 +47,29 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPHost = 'smtp.hostinger.co.id';
+    public $SMTPHost = 'smtp.gmail.com';
 
     /**
      * SMTP Username
      *
      * @var string
      */
-    public $SMTPUser = 'simokit@webpunagaya.com';
+    public $SMTPUser = 'webpunagayaweb@gmail.com';
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass = 'Simokit#1';
+    public $SMTPPass = 'lhmksjoqosjsjdtu';
+    // public $SMTPPass = 'naruto#02';
 
     /**
      * SMTP Port
      *
      * @var int
      */
-    public $SMTPPort = 587;
+    public $SMTPPort = 465;
 
     /**
      * SMTP Timeout (in seconds)
