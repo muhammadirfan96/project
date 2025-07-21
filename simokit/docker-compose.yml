@@ -31,6 +31,21 @@ services:
     networks:
       - proxy
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: simokit-phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=db
+      - VIRTUAL_HOST=phpmyadmin.local.test
+      - VIRTUAL_PORT=80
+    expose:
+      - "80"
+    depends_on:
+      - db
+    networks:
+      - proxy
+
 volumes:
   db_data:
 
