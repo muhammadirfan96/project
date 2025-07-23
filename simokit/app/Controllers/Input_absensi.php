@@ -25,7 +25,7 @@ class Input_absensi extends BaseController
         }
 
         $bdg = $this->AtasanModel->where('jabatan', $bdgAtasan)->first()['bawahan'];
-        $where = "bidang = '$bdg' OR bidang = '$bdgAtasan'";
+        $where = "bidang = '$bdg' OR bidang = '$bdgAtasan' AND active = 1";
         $users = $this->UserModel->asArray()->where($where)->findAll();
         return $users;
     }
@@ -57,7 +57,7 @@ class Input_absensi extends BaseController
     public function pengganti($bidang)
     {
         $shift = explode(' shift ', $bidang)[1];
-        $where = "bidang != '$bidang' AND bidang != 'supervisor operasi shift $shift' AND bidang NOT LIKE '%logistic%' AND bidang NOT LIKE '%manager%' AND bidang != 'admin'";
+        $where = "bidang != '$bidang' AND bidang != 'supervisor operasi shift $shift' AND bidang NOT LIKE '%logistic%' AND bidang NOT LIKE '%manager%' AND bidang != 'admin' AND active = 1";
         return $this->UserModel->asArray()->where($where)->findAll();
     }
 

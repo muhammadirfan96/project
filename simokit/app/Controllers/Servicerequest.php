@@ -27,7 +27,11 @@ class Servicerequest extends BaseController
             $evidence = "Sebelum FLM";
         }
 
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
         $data = [
             'title' => 'service request',
             'header' => ['title' => 'service request ' . $judul, 'kembali' => '/'],
@@ -47,7 +51,11 @@ class Servicerequest extends BaseController
             return redirect()->to(base_url('/profil'));
         }
 
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
 
         $dataValidate = [
             'nomorSr' => [

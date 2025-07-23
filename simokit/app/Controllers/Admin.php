@@ -36,7 +36,10 @@ class Admin extends BaseController
         }
 
         $bidang = explode(' operasi ', $shift);
-        $users = $this->UserModel->where('bidang', 'operator ' . $bidang[1])->asArray()->findAll();
+        $users = $this->UserModel->where([
+            'bidang' => 'operator ' . $bidang[1],
+            'active' => 1
+        ])->asArray()->findAll();
 
         $data = $model->where('tanggal <=', date('Y-m-d', strtotime("$i day", strtotime(date('Y-m-d')))))->findAll();
         // lakukan pengulangan tiap resultnya
@@ -55,7 +58,10 @@ class Admin extends BaseController
 
     public function jmlhPersonilShift($bidang)
     {
-        return count($this->UserModel->asArray()->where('bidang', $bidang)->findAll());
+        return count($this->UserModel->asArray()->where([
+            'bidang' => $bidang,
+            'active' => 1
+        ])->findAll());
     }
 
     public function jadwalShift($tglSekarang, $jamSekarang)
@@ -224,7 +230,10 @@ class Admin extends BaseController
         }
 
         $bidang = explode(' operasi ', $shift);
-        $users = $this->UserModel->where('bidang', 'operator ' . $bidang[1])->asArray()->findAll();
+        $users = $this->UserModel->where([
+            'bidang' => 'operator ' . $bidang[1],
+            'active' => 1
+        ])->asArray()->findAll();
 
         // lakukan pengulangan untuk tiap kondisi where
         for ($i = 0; $i < 3; $i++) {
@@ -255,7 +264,13 @@ class Admin extends BaseController
         $keys = ['waktu', 'kit1', 'kit2', 'ps1', 'ps2', 'et1', 'et2'];
 
         $dataKwh = [
-            [], [], [], [], [], [], [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
         ];
 
         foreach ($kwh as $row) {
@@ -273,7 +288,10 @@ class Admin extends BaseController
 
         // laporan
         $dataLaporan = [
-            [], [], [], []
+            [],
+            [],
+            [],
+            []
         ];
 
         for ($i = -9; $i <= 0; $i++) {

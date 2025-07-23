@@ -24,7 +24,11 @@ class Limas extends BaseController
     public function index()
     {
         $pertanyaan = $this->daftar_pertanyaanModel->where(['untuk' => '5s'])->findAll();
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
         $data = [
             'title' => 'lima es',
             'header' => ['title' => 'kegiatan 5s', 'kembali' => '/'],
@@ -43,7 +47,11 @@ class Limas extends BaseController
             return redirect()->to(base_url('/profil'));
         }
 
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
 
         $dataValidate = [
             'namaPeralatan' => [

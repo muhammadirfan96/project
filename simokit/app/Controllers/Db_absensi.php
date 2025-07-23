@@ -31,7 +31,9 @@ class Db_absensi extends BaseController
             $nama[] = $this->UserModel
                 ->asArray()
                 ->where(
-                    ['id' => explode(' | ', $row['diinput'])[0]]
+                    [
+                        'id' => explode(' | ', $row['diinput'])[0]
+                    ]
                 )
                 ->first()['fullname'];
             $waktu[] = explode(' | ', $row['diinput'])[1];

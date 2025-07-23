@@ -19,7 +19,7 @@ class Manage_users extends BaseController
     public function index()
     {
         $group = $this->GroupModel->asArray()->findAll();
-        $users = $this->UserModel->asArray()->findAll();
+        $users = $this->UserModel->asArray()->where('active', 1)->findAll();
         $data = [
             'title' => 'manage users',
             'header' => ['title' => 'manage users', 'kembali' => '/'],

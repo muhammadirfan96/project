@@ -26,10 +26,13 @@ class Db_checklist extends BaseController
     {
         if (!in_groups('admin')) {
             $bawahan = $this->AtasanModel->where('jabatan', user()->bidang)->first()['bawahan'];
-            return $this->UserModel->asArray()->where('bidang', $bawahan)->findAll();
+            return $this->UserModel->asArray()->where([
+                'bidang' => $bawahan,
+                'active' => 1
+            ])->findAll();
         }
 
-        return $this->UserModel->asArray()->findAll();
+        return $this->UserModel->asArray()->where('active', 1)->findAll();
     }
 
     public function getData()
@@ -64,7 +67,9 @@ class Db_checklist extends BaseController
             $bidang[] = $this->UserModel
                 ->asArray()
                 ->where(
-                    ['username' => explode(' | ', $row['diinput_oleh'])[0]]
+                    [
+                        'username' => explode(' | ', $row['diinput_oleh'])[0]
+                    ]
                 )
                 ->first()['bidang'] ?? 'null';
         }

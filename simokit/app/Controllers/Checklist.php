@@ -51,7 +51,11 @@ class Checklist extends BaseController
 
     public function pilihPeralatan($peralatan)
     {
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
         $pertanyaan = $this->daftar_pertanyaanModel->where(['untuk' => $peralatan])->findAll();
 
         $data = [
@@ -70,7 +74,11 @@ class Checklist extends BaseController
             return redirect()->to(base_url('/profil'));
         }
 
-        $users = $this->userModel->asArray()->where(['bidang' => user()->bidang, 'username !=' => user()->username])->findAll();
+        $users = $this->userModel->asArray()->where([
+            'bidang' => user()->bidang,
+            'username !=' => user()->username,
+            'active' => 1
+        ])->findAll();
 
         $keyDataValidate = [];
         $valueDataValidate = [];
